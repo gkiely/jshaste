@@ -1,0 +1,100 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body, h1, h2, h3, h4, ul, p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+#editor {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.ace_scroller {
+  box-shadow: inset -15px 0px 40px -14px #000;
+}
+
+#viewport {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: #fff;
+  z-index: 10;
+}
+#viewport #iFrame {
+  border: none;
+  height: 99.336%;
+  width: 100%;
+}
+
+.resizer {
+  float: left;
+  height: 100%;
+  width: 16px;
+  margin-left: -8px;
+  cursor: e-resize;
+  display: inline-block;
+  left: 50%;
+  position: absolute;
+  z-index: 100;
+}
+
+.viewportSize{
+  position: absolute;
+  background: rgba(0, 170, 202, 0.84);
+  
+  opacity: 1;
+  font-size: 0.9em;
+  padding: 0.2em;
+}
+.opac0{
+  opacity: 0;
+  transition: 0.5s opacity;
+}
+
+
+/* Theming */
+.editor {
+  background: #272822;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+  color: #272822;
+  font-size: 12px;
+}
+
+.ace_gutter {
+  background: #2F3129 !important;
+}
+
+.nos, .resizing {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.resizing {
+  cursor: e-resize;
+}
+
+.hide{
+  display: none;
+}
