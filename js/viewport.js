@@ -1,35 +1,26 @@
 //=== Viewport ===//
 var Viewport = (function(){
-	function Viewport(vp, str){
-		this.vp = vp;
-		this.iframe = vp.querySelector('iframe');
-		if(str) this.init(str);
-	}
-	//Private methods
-	Viewport.prototype._runIframe = function(str){
-		//obj.loadTimer = (new Date).getTime();
-		var doc =  this.iframe.contentDocument ||  this.iframe.contentWindow.document;
-		doc.open();
-		doc.write(str);
-		doc.close();
-	}
-
-
-	//Public methods
-	Viewport.prototype.init = function(str){
-		//Initial check to see if viewport settings, else insert default
-		var str = str || WS.currentEditor.getValue();
-		this.render(str);
-	}
-
-	//This method kicks off project compile, then writes to render
-	Viewport.prototype.render = function(str){
-		//var str = Project.compile();
-		this._runIframe(str);
-	}
-
-
-	return function(vp, str){ 
-		return new Viewport(vp, str);
+	return {
+		_vp: $id('viewport'),
+		_errorContainer: $id('errorContainer'),
+		iframe:{},
+		init: function(){
+			this.iframe = this._vp.querySelector('iframe');
+			this.render();
+			Workspace.setCurrentViewPort(this);
+		}
 	}
 })();
+
+Viewport._runIframe = function(str){
+	var doc =  this.iframe.contentDocument ||  this.iframe.contentWindow.document;
+	doc.open();
+	str = Project.handleJSErrors(str);
+	doc.write('<script src="js/spritely.iframe.js"></script>' + str);
+	doc.close();
+};
+
+Viewport.render = function(){
+	var str = Workspace.getActiveEditor().inst.getValue();
+	this._runIframe(str);
+};

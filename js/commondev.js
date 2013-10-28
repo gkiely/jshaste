@@ -7,12 +7,12 @@ window.onerror=function(a,b,c){
 	function generateError(){
 		var e, d=w.document.createElement("div");d.className="gkErrorObj";
 		if(b) e=b.slice(b.indexOf("/")+2);
-		d.innerHTML="<div style='font-family:calibri;background:pink; padding:5px 10px 10px 10px;border-top:1px #999 solid;'><div><strong>jshaste error</strong><br>"+a+"<br>Source File: "+"<a href='"+b+"'>"+e+"</a>"+"<br>Line: "+c+"</div><span style=\" display: none; float:left; margin:15px 0px 0px 15px; background:red;padding:4px 9px;border-radius:30px; text-align:center; color:#FFF;\"></span></div>";
-		w.$id('gkErrorObjDivMain').appendChild(d);
+		d.innerHTML="<div style='font-family:calibri;background:pink; padding:0.4em 2.7% 0.8em 2.7%;border-top:1px #999 solid;'><div><strong>Spritely Core Error</strong><br>"+a+"<br>Source File: "+"<a href='"+b+"'>"+e+"</a>"+"<br>Line: "+c+"</div><span style=\" display: none; float:left; margin:15px 0px 0px 15px; background:red;padding:4px 9px;border-radius:30px; text-align:center; color:#FFF;\"></span></div>";
+		w.$id('errorContainer').appendChild(d);
 		w.gkErrorObj={a:a,b:b,c:c,d:1};
 	}
-	if(!$id('gkErrorObjDivMain')){
-		var div = w.document.createElement('div');div.id = 'gkErrorObjDivMain';
+	if(!$id('errorContainer')){
+		var div = w.document.createElement('div');div.id = 'errorContainer';
 		w.document.body.appendChild(div);
 	}
 	//If there was no previous error
@@ -21,7 +21,7 @@ window.onerror=function(a,b,c){
 	}
 	//Check against last, if they are the same
 	else if(a === w.gkErrorObj.a && b === w.gkErrorObj.b && c === w.gkErrorObj.c){
-		var gkObj = w.$id('gkErrorObjDivMain').lastChild;
+		var gkObj = w.$id('errorContainer').lastChild;
 		var spanTag = gkObj.getElementsByTagName('span')[0];
 		spanTag.innerHTML = ++w.gkErrorObj.d;
 		spanTag.style.display = '';
@@ -29,6 +29,8 @@ window.onerror=function(a,b,c){
 	else{
 		generateError();
 	}
+	gk.addClass(w.Viewport._errorContainer, "showI");
+	//gk.show(w.Viewport._errorContainer);
 };
 
 function echo(){

@@ -98,3 +98,6 @@ li {
 .hide{
   display: none;
 }
+.showI{
+  display: block !important;
+}

@@ -1,7 +1,5 @@
 (function(window){
 /*	Awesome todo
-	-prototypal
-	-seperate files for classes, init, events, hinting, etc
 	-develop spritely in spritely
 		-ability to save projects
 		-seperate tabs that save to indexeddb (use framework w/ fallback)
@@ -25,36 +23,24 @@
 	-editor to dom mapping. Insane speed but not as reliable.
 */
 
-
-
-
-
-
-
-
-window.editor = new Editor({
-	id: 'editor',
-	theme: "ace/theme/monokai",
-	mode: "ace/mode/html"
-});
-var vp = new Viewport($id('viewport'), editor.getValue());
-
-var WS = new Workspace(editor, vp);
-
-
+Project.init();
+Editor.init();
+Viewport.init();
 //Lets get the basics down first
 //Spawn and editor and a viewport
 //Then render a viewport
 
 
-
-
-
-
-
-
-
-
-
-
 })(window, undefined);
+
+
+
+
+/*
+DONE:
+-prototypal
+-error msg for spritely coding, create Project.js
+-better tab switching in sublime
+
+*/
+
