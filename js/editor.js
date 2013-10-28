@@ -52,7 +52,6 @@ Editor._addEventListeners = function(){
 		bindKey: {win: "Ctrl-S", mac: "Command-Option-Ss"},
 		exec: function(editor){
 			that.code = editor.getValue();
-
 			if(false){}
 			//if(obj.inceptionOn) obj.inception();
 			else Workspace.getCurrentViewport().render(that.code);

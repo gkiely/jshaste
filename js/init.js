@@ -4,6 +4,8 @@
 		-ability to save projects
 		-seperate tabs that save to indexeddb (use framework w/ fallback)
 		-in seperate window
+	-localStorage
+	-resizer
 	-save spritelys
 		-ability to update core spritely online, so you can always dev on it.
 	-new design

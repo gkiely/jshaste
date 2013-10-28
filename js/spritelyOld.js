@@ -75,6 +75,28 @@ var Project = (function(){
 
 
 
+window.editor = ace.edit("editor");
+function settings(){
+	editor.setTheme(this._theme);
+	editor.session.setMode(this._mode);
+	editor.session.setUseSoftTabs(false);
+	//editor.session.setUseWrapMode(true);
+	editor.setShowPrintMargin(false);
+	editor.setHighlightActiveLine(false);
+	editor.setBehavioursEnabled(false);
+	//editor.moveCursorTo(obj.curs.row, obj.curs.column);
+	editor.focus();
+}
+
+
+editor.commands.addCommand({
+	name: "save",
+	bindKey: {win: "Ctrl-S", mac: "Command-Option-Ss"},
+	exec: function(editor){
+		obj.runIframe(editor.getValue());
+		gk.saveLocalObj('curs', editor.getCursorPosition());
+	}
+});
 
 
 
@@ -243,6 +265,7 @@ else{
 
 //By removing and re-attaching the iframe we can dev spritely inside spritely
 obj.inception = function(){
+	alert('ran');
 	var i = document.createElement('iframe');
 	i.id= "iFrame";
 	gk.removeNode(obj.iframe);
