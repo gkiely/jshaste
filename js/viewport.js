@@ -1,14 +1,18 @@
 //=== Viewport ===//
 var Viewport = (function(){
+	var inception=false;
 	return {
 		_vp: $id('viewport'),
 		_errorContainer: $id('errorContainer'),
 		_iframe:{},
-		_inception: (window.self !== window.top),
+		_inception: false,
 		init: function(){
 			this._iframe = this._vp.querySelector('iframe');
 			this.render(Workspace.getActiveEditor().inst.getValue());
 			Workspace.setCurrentViewPort(this);
+			if(window.self !== window.top){
+				window.parent.Viewport._inception = true;
+			}
 		}
 	}
 })();
@@ -31,7 +35,7 @@ Viewport._replaceIframe = function(){
 
 Viewport.render = function(str){
 	if(this._inception){
-		this._replaceIframe()
+		this._replaceIframe();
 	}
 	this._runIframe(str);
 };

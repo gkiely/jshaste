@@ -49,7 +49,7 @@ editor.commands.addCommand({
 		obj.code = editor.getValue();
 		if(window.self === window.top){
 			if(obj.inceptionOn) obj.inception();
-			else obj.runIframe(obj.code);
+			obj.runIframe(obj.code);
     	}
 		gk.saveLocalObj('curs', editor.getCursorPosition());
 
@@ -59,64 +59,6 @@ editor.commands.addCommand({
 
 
 
-
-
-//=== Viewport ===//
-var Viewport = (function(){
-	function Viewport(vp){
-		//Public vars
-		this.viewport = viewport;
-		this.iframe = viewport.querySelector('iframe');
-	}
-
-	//Private methods
-	function runIframe(){
-		obj.loadTimer = (new Date).getTime();
-		var doc =  this.iframe.contentDocument ||  this.iframe.contentWindow.document;
-		doc.open();
-		doc.write(str);
-		doc.close();
-	}
-
-	//Public methods
-	Viewport.prototype.init = function(){
-		//Initial check to see if viewport settings, else insert default
-
-	}
-
-	//This method kicks off project compile, then writes to render
-	Viewport.prototype.render = function(){
-		var str = Project.compile();
-		runIframe.call(this, str);
-	}
-
-	return function(){ 
-		return new Viewport(vp)
-	}
-})();
-
-//=== Editor ===//
-// Spawns a new editor
-// An editor instance contains all the tabs currently in that editor
-// Handles all editor shortcuts
-function Editor(size){
-	this.size = size;
-	this.tabs = tabs;
-}
-
-Editor.prototype._init = function(){
-
-};
-
-Editor.prototype._addNewTab = function(name, data){
-
-};
-
-//=== tab ===//
-// Constructor to spawn new tab
-function Tab(){
-
-}
 
 
 
@@ -226,7 +168,6 @@ obj.inception = function(){
 	gk.removeNode(obj.iframe);
 	obj.viewport.appendChild(i);
 	obj.iframe = i;
-	obj.runIframe(editor.getValue());
 }
 
 
@@ -242,7 +183,7 @@ editor.session.on('change', function() {
 		
 		if(window.self === window.top){
 			if(obj.inceptionOn) obj.inception();
-			else obj.runIframe(obj.code);
+			obj.runIframe(obj.code);
 			codeTimer = setTimeout(function(){
 	    		window.localStorage['code'] =  obj.code;
 	    		gk.saveLocalObj('curs', editor.getCursorPosition());

@@ -24,12 +24,14 @@ var Editor = (function(){
 		init: function(){
 			window.editor = this.inst = ace.edit(this._id);
 			this._settings();
+			if(window.self === window.top){
+				this.inst.focus();
+			}
 			this._addEventListeners();
 			Workspace.setActiveEditor(this);
 		}
 	}
 })();
-
 
 Editor._settings = function(){
 	this.inst.setTheme(this._theme);
@@ -40,28 +42,29 @@ Editor._settings = function(){
 	this.inst.setHighlightActiveLine(false);
 	this.inst.setBehavioursEnabled(false);
 	//editor.moveCursorTo(obj.curs.row, obj.curs.column);
-	this.inst.focus();
-};
+}
+
+
 
 //Event listeners
 Editor._addEventListeners = function(){
-	//Event listeners
 	var that = this;
-	this.inst.commands.addCommand({
+	editor.commands.addCommand({
 		name: "save",
 		bindKey: {win: "Ctrl-S", mac: "Command-Option-Ss"},
 		exec: function(editor){
 			that.code = editor.getValue();
-			if(false){}
-			//if(obj.inceptionOn) obj.inception();
-			else Workspace.getCurrentViewport().render(that.code);
-			window.localStorage['code'] =  that.code;
-			gk.saveLocalObj('curs', editor.getCursorPosition());
+			Workspace.getCurrentViewport().render(that.code);
+			if(window.self = window.top){
+				window.localStorage['code'] =  that.code;
+				gk.saveLocalObj('curs', editor.getCursorPosition());
+			}
 		}
 	});
 
-	var runTimer, codeTimer;
-	/*
+
+	/*var runTimer, codeTimer;
+	// auto update code
 	this.inst.session.on('change', function() {
 		that.code = editor.getValue();
 
@@ -79,5 +82,5 @@ Editor._addEventListeners = function(){
 	    	}
 		},100);
 	});
-		*/
+	*/
 };
