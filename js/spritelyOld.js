@@ -25,67 +25,20 @@
 	-editor to dom mapping. Insane speed but not as reliable.
 */
 
-//=== Workspace ===//
-// Spawns a new workspace
-// Handles files, folders, workspace shortcuts
-// Can contain multiple editor or viewport instances
-function Workspace(editorArr, viewportArr, sidebar){
-
-}
-
-Workspace.prototype._init = function(){
-
-};
-
-Workspace.prototype._updateViewport = function(project, viewport){
-	
-}
-
-//Resize bar method
-//type: vert or horiz
-//elem: element to attach it to
-Workspace.prototype._addResizeBar = function(type, elem){
-
-};
-
-//==== Project ====//
-//Project contains all the file linkages for a project
-//Makes rendering in viewport much easier
-var Project = (function(){
-	//@files: list of files and folders in object
-	function Project(files){
-
-	}
-
-	//---Private methods
-
-
-
-	//---Public methods
-	//Compiles all sass and returns html for render
-	Project.prototype.compile = function(){
-		return code;
-	}
-
-	return function(){ 
-		return new Project();
-	}
-})();
-
-
 
 
 window.editor = ace.edit("editor");
-function settings(){
-	editor.setTheme(this._theme);
-	editor.session.setMode(this._mode);
-	editor.session.setUseSoftTabs(false);
-	//editor.session.setUseWrapMode(true);
-	editor.setShowPrintMargin(false);
-	editor.setHighlightActiveLine(false);
-	editor.setBehavioursEnabled(false);
-	//editor.moveCursorTo(obj.curs.row, obj.curs.column);
-	editor.focus();
+editor.setTheme('ace/theme/monokai');
+editor.session.setMode('ace/mode/html');
+editor.session.setUseSoftTabs(false);
+//editor.session.setUseWrapMode(true);
+editor.setShowPrintMargin(false);
+editor.setHighlightActiveLine(false);
+editor.setBehavioursEnabled(false);
+
+//editor.moveCursorTo(obj.curs.row, obj.curs.column);
+if(window.self === window.top){
+editor.focus();
 }
 
 
@@ -93,16 +46,19 @@ editor.commands.addCommand({
 	name: "save",
 	bindKey: {win: "Ctrl-S", mac: "Command-Option-Ss"},
 	exec: function(editor){
-		obj.runIframe(editor.getValue());
+		obj.code = editor.getValue();
+		if(window.self === window.top){
+			if(obj.inceptionOn) obj.inception();
+			else obj.runIframe(obj.code);
+    	}
 		gk.saveLocalObj('curs', editor.getCursorPosition());
+
 	}
 });
 
 
 
-function SideBar(){
 
-}
 
 
 //=== Viewport ===//
@@ -265,7 +221,6 @@ else{
 
 //By removing and re-attaching the iframe we can dev spritely inside spritely
 obj.inception = function(){
-	alert('ran');
 	var i = document.createElement('iframe');
 	i.id= "iFrame";
 	gk.removeNode(obj.iframe);

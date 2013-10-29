@@ -29,7 +29,7 @@ window.onerror=function(a,b,c){
 	else{
 		generateError();
 	}
-	gk.addClass(w.Viewport._errorContainer, "showI");
+	if(w.Viewport)gk.addClass(w.Viewport._errorContainer, "showI");
 	//gk.show(w.Viewport._errorContainer);
 };
 
