@@ -11,10 +11,27 @@
   		<![endif]-->
 		<meta name="viewport" content="initial-scale =1.0,width=device-width" />
     	<script>window.Tstart=(new Date).getTime()</script>
-    	<style>
-    	</style>
 	</head>
 <body>
+	<div class="modalCover hide"></div>
+	<div class="omniContainer hide">
+		<input type="text" class="omnibar" />
+		<div class="results hide"></div>
+	</div>
+	<ul class="tabs nos">
+		<!--
+		<li class="active t1">
+			<i class="lt"></i>
+			<i class="bg">Untitled</i>
+			<i class="rt"></i>
+			<i class="close"></i>
+		</li>
+		-->
+		<i class="addFile hidei"></i>
+		<div class="btns"></div>
+	</ul>
+<div class="wrapper">
+	<!--<div class="files"></div>-->
 <div id="editor" class="ace-monokai ace_dark editor">&lt;!DOCTYPE html>
 &lt;html>
 	&lt;meta charset="utf-8">
@@ -28,10 +45,6 @@
 			text-align: center;
 		}
 	&lt;/style>
-	&lt;script src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js">&lt;/script>
-	&lt;!--[if lt IE 9]>
-  		&lt;script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">&lt;/script>
-  	&lt;![endif]-->
 	&lt;meta name="viewport" content="initial-scale =1.0,width=device-width" />
 	&lt;/head>
 	&lt;body>
@@ -41,30 +54,32 @@
 	&lt;/script>
 	&lt;/body>
 &lt;/html></div>
-<div class="resizer"></div>
+	<div class="resizer"></div>
+	<div id="viewport">
+		<div class="sizeLabel opaque"></div>
+		<iframe src="" id="iFrame"></iframe>
+		<div id="errorContainer" style="position: absolute;bottom: 0; width: 100%;"></div>
+	</div>
+</div><!-- wrapper -->
 
-
-<div id="viewport">
-	<div class="viewportSize opac0"></div>
-	<iframe src="" id="iFrame"></iframe>
-	<div id="errorContainer" style="position: absolute;bottom: 0; width: 100%;"></div>
-</div>
 	<script src="js/ace.js"></script>
 	<script src="js/commondev.js"></script>
 	
-	
 	<script src="js/setup.js"></script>
 	<script src="js/editor.js"></script>
+	<script src="js/tabs.js"></script>
 	<script src="js/Project.js"></script>
 	<script src="js/viewport.js"></script>
+	
 	<script src="js/workspace.js"></script>
 	
 	<script src="js/init.js"></script>
+	<script>
+		
+	</script>
+	<script src="js/Omnibar.js"></script>
 	<script src="js/emmet.min.js" ></script>
 	
-	
-	<!-- <script src="js/spritelyOld.js"></script> 
-	 -->
 </body>
 </html>
 

@@ -84,7 +84,7 @@ window.onerror=function(a,b,c){
 
 	function generateError(){
 		var gkE = w.document.querySelector('.gkErrorObj');
-		if(gkE)w.gk.removeNode(gkE);
+		if(gkE)w.gk.remove(gkE);
 		var d=w.document.createElement("div");d.className="gkErrorObj";
 		d.innerHTML="<div style='font-family:calibri;background:pink; height:62px; padding:5px 10px;border-top:1px #999 solid;'><div style=float:left;>"+a+"<br>Source File: "+"<a href='"+b+"'>"+e+"</a>"+"<br>Line: "+lineNum+"</div><span style=\" display: none; float:left; margin:15px 0px 0px 15px; background:red;padding:4px 9px;border-radius:30px; text-align:center; color:#FFF;\"></span></div>";
 		w.$id('errorContainer').appendChild(d);
@@ -132,8 +132,32 @@ window.onerror=function(a,b,c){
 	else{
 		generateError();
 	}
-};
 
+	if(typeof lineNum !== 'undefined'){
+		//set error on editor
+		w.editor.getSession().setAnnotations([{
+			row:lineNum-1,
+			text: "error",
+			type: "error" //error, warning, info
+		}]);
+	}
+};
+w.editor.getSession().setAnnotations();
+
+window.onkeydown = function(e){
+	var k = e.keyCode;
+	if(e.ctrlKey && k === 80){
+		w.Omnibar.toggleOmnibar();
+		e.preventDefault(); 
+	}
+	else if(e.ctrlKey && k === 79){
+		e.preventDefault();
+	}
+	//Esc
+	else if(k === 27){
+		w.Omnibar.hideOmnibar();
+	}
+}
 /*
 //This is to catch f2,f3,f4
 window.onkeydown = function(evt){

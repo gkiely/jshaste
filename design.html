@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Design</title>
+	<style>
+		html, body{height: 100%; width: 100%;}
+		.tabs, .stabs{
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			line-height: 1em;
+			position: relative;
+		}
+		.nos {
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  -o-user-select: none;
+		  user-select: none;
+		}
+		.stabs{
+			background: -webkit-linear-gradient(top, #35363b, #1f2024);
+			height:50px;
+			/*background: linear-gradient(top, #35363b, #1f2024);*/
+			border-bottom: 1px solid #414345;
+			z-index: 105;
+		}
+		.stabs li{
+			display: inline-block;
+			margin: 0;
+			height: 32px;
+			margin-right: -25px;
+			position: relative;
+			cursor:default;
+			margin-top: 18px;
+			font-family: calibri;
+		}
+		.stabs li i{font-style: normal;}
+		.stabs li .bg{
+			display: block;
+			float: left;
+			height: 100%;
+			padding: 0.45em 0.8em;
+			box-sizing: border-box;
+			color:white;
+			background: -webkit-linear-gradient(top, #4C4C4D 0%, #414143 9%, #333435 25%,  #2B2C2C 100%);
+			border-top: 1px solid #5D5F61;
+			/*border-bottom: 1px solid #414345;*/
+		}
+		.stabs li .lt{
+			display: block;
+			float: left;
+			height: 100%;
+			width: 22px;
+			background: url(img/tab-left-inactive2.png) no-repeat;
+			/* border-bottom: 1px solid #414345; */
+		}
+		.stabs li .rt{
+			display: block;
+			float: right;
+			height:100%;
+			width: 25px;
+			background: url(img/tab-right-inactive.png) no-repeat;
+/*			border-bottom: 1px solid #414345;*/
+		}
+		.stabs li.active .bg{
+			background: -webkit-linear-gradient(top, #303438 0%, #212325 25%,  #1d1f21 100%);
+			border-top: 1px solid #4c4e50;
+			/*border-bottom: none;*/
+		}
+		.stabs li.active .lt{
+			background: url(img/tab-left.png) no-repeat;
+			height: 100%;
+		}
+		.stabs li.active .rt{
+			background: url(img/tab-right.png) no-repeat;
+			/*border-bottom: none;*/
+			/*height: 100%;*/
+		}
+		.stabs li.active .rt,
+		.stabs li.active .lt{
+			/* -webkit-background-size: 100.1%; */
+			/* background-size: 100.1%; */
+			height: 33px;
+		}
+		.stabs li.active i{
+			border-bottom: 1px solid #222020;
+			
+		}
+		.stabs li{
+			height: 30px;
+			margin-top: 20px;
+			margin-bottom: 0;
+		}
+		.stabs li.active i.bg{
+			height: 33px;
+		}
+		.stabs li.active{
+			margin-bottom: 2px;
+			height: 29px;
+			z-index: 101;
+			margin-bottom: -1px;
+			height: 31px;
+			overflow: hidden;
+		}
+		.stabs li .lt{
+			background-size: 120%;
+		}
+		.t1{z-index: 100}
+		.t2{z-index: 99}
+		.t3{z-index: 98}
+		.t4{z-index: 97}
+		.t5{z-index: 96}
+		.t6{z-index: 95}
+		.t7{z-index: 94}
+		.t8{z-index: 93}
+		.t9{z-index: 92}
+		.t10{z-index: 91}
+		.t11{z-index: 90}
+		.t12{z-index: 89}
+		.t13{z-index: 88}
+		.t14{z-index: 87}
+		.t15{z-index: 86}
+		.t16{z-index: 85}
+		.t17{z-index: 84}
+		.t18{z-index: 83}
+		.t19{z-index: 82}
+		.t20{z-index: 81}
+
+		.editor{
+			background: #1D1F21;
+			width: 100%;
+			height: 80%;
+		}
+	</style>
+</head>
+<body>
+	<ul class="stabs nos">
+		<li class="t1"><i class="lt"></i><i class="bg">Lorem</i><i class="rt"></i></li>
+		<li class="active t2"><i class="lt"></i><i class="bg">Ipsum</i><i class="rt"></i></li>
+		<li class="t3"><i class="lt"></i><i class="bg">Sit amet</i><i class="rt"></i></li>
+		<li class="t4"><i class="lt"></i><i class="bg">Consectetur</i><i class="rt"></i></li>
+	</ul>
+	<div class="editor">
+	</div>
+
+	<script src="js/commondev.js"></script>
+	<script>
+		var li = $q(".stabs li", true);
+		var tabs = $c('stabs');
+		li.forEach(function(el){
+			el.onclick = function(){
+				gk.removeClass(tabs.getElementsByClassName('active')[0], 'active');
+				gk.addClass(this, 'active');
+			}
+		});
+
+	</script>
+</body>
+</html>

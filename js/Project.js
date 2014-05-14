@@ -5,18 +5,26 @@ var Project = (function(){
 		projectName:"Starter",
 		init: function(){
 			Workspace.setCurrentProject(this);
+			this.startup();
 		}
 	}
 })();
 
 //Get all localStorage details
 Project.startup = function(){
-
+	if(window.self === window.top){
+		
+	}
 }
+
 
 Project.compile = function(){
 
 };
+
+//On project start
+//Parse project in localStorage
+//Bring in all resources
 
 Project.handleJSErrors = function(str){
 	//If chrome or safari, we need to do this, otherwise return str
@@ -48,4 +56,25 @@ Project.handleJSErrors = function(str){
 		return str;
 	}
 	else return str;
+}
+
+
+Project.getScript = function(str){
+	var i =0, j, k, scr, arr=[];
+	while( ~(j = str.indexOf('<script', i)) ){
+		j = str.indexOf('>', j) +1;
+		k = str.indexOf('</script', j);
+		scr = str.substring(j, k);
+		arr.push(scr);	
+		i=str.indexOf('>', k);
+	}
+	return arr;
+}
+
+//unfinished
+Project.insideScript = function(str, i){
+	var j,k, l, m;
+	if( ~(j =str.indexOf('</script', i)) && ~(k=str.lastIndexOf('<script', i)) ){
+
+	}
 }
