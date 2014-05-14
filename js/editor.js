@@ -38,7 +38,10 @@ var Editor = (function(){
 					editor.setValue(str);
 					editor.session.selection.clearSelection();
 					var curs = gk.getLocalObj('curs');
-					editor.moveCursorTo(curs.row, curs.col);
+					if(curs){
+						editor.moveCursorTo(curs.row, curs.col);
+					}
+					
 				}
 				editor.focus();
 				this.code = str;
